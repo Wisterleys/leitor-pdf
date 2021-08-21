@@ -4,7 +4,7 @@ const Express = require("express");
 const path = require("path");
 const app = Express();
 const port = 8080; //porta
-
+// depois tentar com https://www.npmjs.com/package/pdfreader
 app.use(Express.static(path.join(__dirname, 'public')));
 
 function readPDF(pdfCaminho,res){
