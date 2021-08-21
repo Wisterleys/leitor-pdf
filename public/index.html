@@ -11,7 +11,24 @@
     <input type="file" name="file" id="file">
     <script>
         document.querySelector("#file").addEventListener("change",e=>{
-            console.log(e.target.files)
+            const ajax = new XMLHttpRequest();
+            ajax.open("GET","/readpdf/"+e.target.files[0].name)
+            ajax.send()
+
+           ajax.onload=e=>{
+               const text = JSON.parse(ajax.responseText)
+               let resul="";
+               text.formImage.Pages.forEach(page => {
+                   page.Texts.forEach(text => {
+
+                       text.R[0].T.search("%")>-1?resul+=" ":resul+=text.R[0].T
+                   })
+               });
+               console.log(resul)
+           }
+           ajax.onerror=err=>{
+               console.log(err)
+           }
         })
     </script>
 </body>
