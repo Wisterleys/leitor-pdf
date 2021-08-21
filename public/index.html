@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>Em construção...</h1>
+    <input type="file" name="file" id="file">
+    <script>
+        document.querySelector("#file").addEventListener("change",e=>{
+            console.log(e.target.files)
+        })
+    </script>
 </body>
 </html>
